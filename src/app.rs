@@ -62,11 +62,9 @@ impl TemplateApp {
 
         self.dicom_files = builder
             .iter()
-            .filter(|x| !x.is_dir && open_file(&x.path).is_ok())
+            .mode(rsdirtreebuilder::dir_tree_builder::TraveseMode::DFS)
+            .filter(|x| !x.is_dir() && open_file(&x.path()).is_ok())
             .collect();
-
-        self.dicom_files
-            .sort_by(|a, b| a.path.as_os_str().cmp(b.path.as_os_str()));
 
         self.dicom_dump.clear();
     }
@@ -191,7 +189,7 @@ impl TemplateApp {
         let mut current_dir = self.base_dir.to_path_buf();
 
         for entry in &self.dicom_files {
-            let parent_dir = entry.path.parent().expect("a file should have a parent");
+            let parent_dir = entry.path().parent().expect("a file should have a parent");
 
             // Go up until the directory of the file is under the current_dir.
             while !parent_dir.starts_with(&current_dir) {
@@ -212,9 +210,9 @@ impl TemplateApp {
 
             // Now add the file.
             builder.leaf(
-                entry.path.clone(),
+                entry.path().to_path_buf(),
                 entry
-                    .path
+                    .path()
                     .file_name()
                     .expect("file entry should have a filename")
                     .display()
