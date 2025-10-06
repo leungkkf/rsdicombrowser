@@ -76,7 +76,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The diocm browser provides a basic GUI for browsing and searching the tags of dicom files. . The project is created as an exercise while learning Rust. 
+The diocm browser provides a basic GUI (based on <a href="https://github.com/emilk/egui">egui</a>) for browsing and searching the tags of dicom files (based on <a href="https://github.com/Enet4/dicom-rs">dicom-rs</a>). The project is created as an exercise while learning Rust. 
+
+<img src='demo/demo.gif' />
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
