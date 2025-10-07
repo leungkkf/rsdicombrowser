@@ -2,6 +2,7 @@ use core::f32;
 use dicom::object::open_file;
 use dicom_dump::DumpOptions;
 use egui::Widget;
+use egui_file_dialog::FileDialog;
 use egui_ltreeview::{Action, TreeView};
 use regex::RegexBuilder;
 use rsdirtreebuilder::dir_tree_builder::{DirTreeBuilder, PathSizeInfo};
@@ -21,6 +22,7 @@ pub struct TemplateApp {
     matched_pos: Option<usize>,
     scroll_pos: Option<usize>,
     search_results: Option<Vec<usize>>,
+    file_dialog: FileDialog,
 }
 
 impl TemplateApp {
@@ -43,6 +45,7 @@ impl TemplateApp {
             matched_pos: None,
             scroll_pos: None,
             search_results: None,
+            file_dialog: FileDialog::new(),
         }
     }
 }
@@ -245,10 +248,8 @@ impl eframe::App for TemplateApp {
                 let is_web = cfg!(target_arch = "wasm32");
                 if !is_web {
                     ui.menu_button("File", |ui| {
-                        if ui.button("Open").clicked()
-                            && let Some(path) = rfd::FileDialog::new().pick_folder()
-                        {
-                            self.handle_file_open(&path);
+                        if ui.button("Open").clicked() {
+                            self.file_dialog.pick_directory();
                         }
                         if ui.button("Quit").clicked() {
                             ctx.send_viewport_cmd(egui::ViewportCommand::Close);
@@ -258,12 +259,17 @@ impl eframe::App for TemplateApp {
             });
 
             ui.horizontal(|ui| {
-                if ui.button("📂").clicked()
-                    && let Some(path) = rfd::FileDialog::new().pick_folder()
-                {
-                    self.handle_file_open(&path);
+                if ui.button("📂").clicked() {
+                    self.file_dialog.pick_directory();
                 }
             });
+
+            // Update the dialog
+            self.file_dialog.update(ctx);
+            // Check if the user picked a file.
+            if let Some(path) = self.file_dialog.take_picked() {
+                self.handle_file_open(&path);
+            }
         });
 
         if !self.dicom_files.is_empty() {

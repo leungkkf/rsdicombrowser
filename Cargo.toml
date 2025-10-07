@@ -16,7 +16,6 @@ egui = "0.32.3"
 egui_ltreeview = { version = "0.5.3", features = ["persistence"] }
 env_logger = "0.11.8"
 log = "0.4.28"
-rfd = "0.15.4"
 winit = "0.30.12"
 
 rsdirtreebuilder = { git = "https://github.com/leungkkf/rsdirtreebuilder.git" }
@@ -24,3 +23,4 @@ egui_json_tree = "0.13.0"
 dicom = { git = "https://github.com/leungkkf/dicom-rs.git", branch="AllowLimitsInNonStdoutDump"}
 dicom-dump = { git = "https://github.com/leungkkf/dicom-rs.git", branch="AllowLimitsInNonStdoutDump"}
 regex = "1.11.3"
+egui-file-dialog = "0.11.0"
