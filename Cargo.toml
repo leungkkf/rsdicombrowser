@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-eframe = { version = "0.32", default-features = false, features = [
+eframe = { version = "0.33", default-features = false, features = [
     "accesskit",     # Make egui compatible with screen readers. NOTE: adds a lot of dependencies.
     "default_fonts", # Embed the default egui fonts.
     "glow",          # Use the glow rendering backend. Alternative: "wgpu".
@@ -12,18 +12,16 @@ eframe = { version = "0.32", default-features = false, features = [
     "wayland",       # To support Linux (and CI)
     "x11",           # To support older Linux distributions (restores one of the default features)
 ] }
-egui = "0.32.3"
-egui_ltreeview = { version = "0.5.3", features = ["persistence"] }
-env_logger = "0.11.8"
-log = "0.4.28"
-winit = "0.30.12"
-
+egui = "0.33"
+egui_ltreeview = { version = "0.6", features = ["persistence"] }
+env_logger = "0.11"
+log = "0.4"
+winit = "0.30"
 rsdirtreebuilder = { git = "https://github.com/leungkkf/rsdirtreebuilder.git" }
-egui_json_tree = "0.13.0"
 regex = "1.11.3"
-egui-file-dialog = "0.11.0"
-dicom = "0.9.0"
-dicom-dump = "0.9.0"
+egui-file-dialog = "0.12"
+dicom = "0.9"
+dicom-dump = "0.9"
 
 [patch.crates-io]
 dicom = { git = "https://github.com/leungkkf/dicom-rs.git", branch = "AllowLimitsInNonStdoutDump" }
