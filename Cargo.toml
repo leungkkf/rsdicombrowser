@@ -20,7 +20,11 @@ winit = "0.30.12"
 
 rsdirtreebuilder = { git = "https://github.com/leungkkf/rsdirtreebuilder.git" }
 egui_json_tree = "0.13.0"
-dicom = { git = "https://github.com/leungkkf/dicom-rs.git", branch="AllowLimitsInNonStdoutDump"}
-dicom-dump = { git = "https://github.com/leungkkf/dicom-rs.git", branch="AllowLimitsInNonStdoutDump"}
 regex = "1.11.3"
 egui-file-dialog = "0.11.0"
+dicom = "0.9.0"
+dicom-dump = "0.9.0"
+
+[patch.crates-io]
+dicom = { git = "https://github.com/leungkkf/dicom-rs.git", branch = "AllowLimitsInNonStdoutDump" }
+dicom-dump = { git = "https://github.com/leungkkf/dicom-rs.git", branch="AllowLimitsInNonStdoutDump"}
