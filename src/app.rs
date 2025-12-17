@@ -66,7 +66,7 @@ impl TemplateApp {
         self.dicom_files = builder
             .iter()
             .mode(rsdirtreebuilder::dir_tree_builder::TraveseMode::DFS)
-            .filter(|x| !x.is_dir() && open_file(&x.path()).is_ok())
+            .filter(|x| !x.is_dir() && open_file(x.path()).is_ok())
             .collect();
 
         self.dicom_dump.clear();
